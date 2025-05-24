@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cx } from "@/utils/all";
 import { urlForImage } from "@/lib/sanity/image";
 import { parseISO, format } from "date-fns";
-import { PhotoIcon } from "@heroicons/react/24/outline";
+import MediaContentRenderer from "@/components/MediaContentRenderer";
 import CategoryLabel from "@/components/blog/category";
 
 export default function PostList({
@@ -21,6 +21,7 @@ export default function PostList({
   const AuthorimageProps = post?.author?.image
     ? urlForImage(post.author.image)
     : null;
+
   return (
     <>
       <div
@@ -30,20 +31,16 @@ export default function PostList({
         )}>
         <div
           className={cx(
-            " overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105   dark:bg-gray-800"
+            "relative overflow-hidden rounded-md bg-gray-100 transition-all hover:scale-105 dark:bg-gray-800",
+            aspect === "landscape"
+              ? "aspect-video"
+              : aspect === "custom"
+              ? "aspect-[5/4]"
+              : "aspect-square"
           )}>
           <Link
-            className={cx(
-              "relative block",
-              aspect === "landscape"
-                ? "aspect-video"
-                : aspect === "custom"
-                ? "aspect-[5/4]"
-                : "aspect-square"
-            )}
-            href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
-              post.slug.current
-            }`}>
+            href={`${pathPrefix || "/post"}/${post.slug.current}`}
+            aria-label="View Post">
             {imageProps ? (
               <Image
                 src={imageProps.src}
@@ -52,16 +49,17 @@ export default function PostList({
                   blurDataURL: post.mainImage.blurDataURL
                 })}
                 alt={post.mainImage.alt || "Thumbnail"}
-                priority={preloadImage ? true : false}
+                priority={preloadImage}
                 className="object-cover transition-all"
                 fill
-                sizes="(max-width: 768px) 30vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
-            ) : (
-              <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200">
-                <PhotoIcon />
-              </span>
-            )}
+            ) : post.mediaContent?.[0] ? (
+              <MediaContentRenderer
+                content={post.mediaContent[0]}
+                priority={preloadImage}
+              />
+            ) : null}
           </Link>
         </div>
 
@@ -79,24 +77,14 @@ export default function PostList({
                   ? "text-3xl"
                   : "text-lg",
                 fontWeight === "normal"
-                  ? "line-clamp-2 font-medium  tracking-normal text-black"
-                  : "font-semibold leading-snug tracking-tight",
-                "mt-2    dark:text-white"
+                  ? "line-clamp-2 font-medium tracking-normal text-black"
+                  : "line-clamp-2 font-semibold tracking-tight text-black",
+                "mt-2 dark:text-white"
               )}>
               <Link
-                href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
-                  post.slug.current
-                }`}>
-                <span
-                  className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom
-      bg-no-repeat
-      transition-[background-size]
-      duration-500
-      hover:bg-[length:100%_3px]
-      group-hover:bg-[length:100%_10px]
-      dark:from-purple-800 dark:to-purple-900">
-                  {post.title}
-                </span>
+                href={`${pathPrefix || "/post"}/${post.slug.current}`}
+                legacyBehavior>
+                <a>{post.title}</a>
               </Link>
             </h2>
 
@@ -114,24 +102,23 @@ export default function PostList({
             </div>
 
             <div className="mt-3 flex items-center space-x-3 text-gray-500 dark:text-gray-400">
-              <Link href={`/author/${post?.author?.slug?.current}`}>
-                <div className="flex items-center gap-3">
-                  <div className="relative h-5 w-5 flex-shrink-0">
-                    {post?.author?.image && (
-                      <Image
-                        src={AuthorimageProps.src}
-                        alt={post?.author?.name}
-                        className="rounded-full object-cover"
-                        fill
-                        sizes="20px"
-                      />
-                    )}
-                  </div>
-                  <span className="truncate text-sm">
-                    {post?.author?.name}
-                  </span>
+              <div className="flex items-center gap-3">
+                <div className="relative h-5 w-5 flex-shrink-0">
+                  {AuthorimageProps && (
+                    <Image
+                      src={AuthorimageProps.src}
+                      alt={post?.author?.name}
+                      className="rounded-full object-cover"
+                      fill
+                      sizes="20px"
+                    />
+                  )}
                 </div>
-              </Link>
+                <span className="truncate text-sm">
+                  {post?.author?.name}
+                </span>
+              </div>
+
               <span className="text-xs text-gray-300 dark:text-gray-600">
                 &bull;
               </span>
