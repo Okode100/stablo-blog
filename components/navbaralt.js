@@ -26,11 +26,7 @@ export default function NavbarAlt(props) {
       label: "Contact",
       href: "/contact"
     },
-    {
-      label: "Pages",
-      href: "#",
-      
-    },
+    
     
   ];
 

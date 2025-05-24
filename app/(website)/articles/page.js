@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import Container from "@/components/container";
-import Archive from "./archive";
+import Articles from "./articles";
 import Loading from "@/components/loading";
 
 export const dynamic = "force-dynamic";
 
 export const runtime = "edge";
 
-export default async function ArchivePage({ searchParams }) {
+export default async function ArticlesPage({ searchParams }) {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Posts Grid */}
@@ -16,7 +16,7 @@ export default async function ArchivePage({ searchParams }) {
           <Suspense
             key={searchParams.page || "1"}
             fallback={<Loading />}>
-            <Archive searchParams={searchParams} />
+            <Articles searchParams={searchParams} />
           </Suspense>
         </div>
       </Container>

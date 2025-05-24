@@ -19,19 +19,19 @@ export default function Navbar(props) {
     {
       label: "About",
       href: "/about"
+    }
+
+  ];
+
+  const rightmenu = [
+    {
+      label: "Articles",
+      href: "/articles"
     },
     {
       label: "Contact",
       href: "/contact"
     }
-  ];
-
-  const rightmenu = [
-    {
-      label: "Archive",
-      href: "/archive"
-    },
-    
   ];
 
   const mobilemenu = [...leftmenu, ...rightmenu];

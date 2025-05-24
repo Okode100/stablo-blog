@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/container";
 import PostList from "@/components/postlist";
-import ArchiveBanner from "@/components/ArchiveBanner";
+import ArticlesBanner from "@/components/ArticlesBanner";
 
 export default function Post({ posts, archiveBanner }) {
   const latestPostSlug = posts[0]?.slug?.current;
@@ -10,7 +10,7 @@ export default function Post({ posts, archiveBanner }) {
     <>
       {/* Banner Section */}
       {archiveBanner && (
-        <ArchiveBanner {...archiveBanner} latestPostSlug={latestPostSlug} />
+        <ArticlesBanner {...archiveBanner} latestPostSlug={latestPostSlug} />
       )}
 
       {/* Main Content */}
@@ -33,9 +33,9 @@ export default function Post({ posts, archiveBanner }) {
           </div>
           <div className="mt-10 flex justify-center">
             <Link
-              href="/archive"
+              href="/articles"
               className="relative inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-3 py-2 pl-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300">
-              <span>View all Posts</span>
+              <span>View all Articles</span>
             </Link>
           </div>
         </Container>
