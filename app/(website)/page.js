@@ -1,9 +1,13 @@
 import HomePage from "./home";
-import { getAllPosts } from "@/lib/sanity/client";
+import { getAllPosts, getArchiveBanner } from "@/lib/sanity/client";
 
 export default async function IndexPage() {
-  const posts = await getAllPosts();
-  return <HomePage posts={posts} />;
+  const [posts, archiveBanner] = await Promise.all([
+    getAllPosts(),
+    getArchiveBanner()
+  ]);
+  
+  return <HomePage posts={posts} archiveBanner={archiveBanner} />;
 }
 
 // export const revalidate = 60;

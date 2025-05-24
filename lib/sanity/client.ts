@@ -13,7 +13,8 @@ import {
   catpathquery,
   catquery,
   getAll,
-  searchquery
+  searchquery,
+  archiveBannerQuery
 } from "./groq";
 import { createClient } from "next-sanity";
 
@@ -27,11 +28,23 @@ if (!projectId) {
  * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
  */
 const client = projectId
-  ? createClient({ projectId, dataset, apiVersion, useCdn })
+  ? createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn,
+      perspective: 'published'
+    })
   : null;
 
 export const fetcher = async ([query, params]) => {
-  return client ? client.fetch(query, params) : [];
+  if (!client) return [];
+  try {
+    return await client.fetch(query, params);
+  } catch (err) {
+    console.error('Error fetching from Sanity:', err);
+    return [];
+  }
 };
 
 (async () => {
@@ -46,17 +59,25 @@ export const fetcher = async ([query, params]) => {
 })();
 
 export async function getAllPosts() {
-  if (client) {
-    return (await client.fetch(postquery)) || [];
+  if (!client) return [];
+  try {
+    const posts = await client.fetch(postquery);
+    return posts || [];
+  } catch (err) {
+    console.error('Error fetching posts:', err);
+    return [];
   }
-  return [];
 }
 
 export async function getSettings() {
-  if (client) {
-    return (await client.fetch(configQuery)) || [];
+  if (!client) return null;
+  try {
+    const settings = await client.fetch(configQuery);
+    return settings || null;
+  } catch (err) {
+    console.error('Error fetching settings:', err);
+    return null;
   }
-  return [];
 }
 
 export async function getPostBySlug(slug) {
@@ -130,4 +151,18 @@ export async function getPaginatedPosts({ limit, pageIndex = 0 }) {
     );
   }
   return [];
+}
+
+export async function getArchiveBanner() {
+  if (!client) return null;
+  try {
+    const banner = await client.fetch(archiveBannerQuery);
+    if (!banner) {
+      console.log('No Archive Banner found in Sanity');
+    }
+    return banner || null;
+  } catch (err) {
+    console.error('Error fetching archive banner:', err);
+    return null;
+  }
 }

@@ -66,27 +66,35 @@ const Backlink = () => {
       href="https://web3templates.com/templates/stablo-minimal-blog-website-template"
       target="_blank"
       rel="noopener"
-      className="dark:bg-trueGray-900 dark:border-trueGray-700 dark:text-trueGray-300 fixed bottom-5 right-5 flex place-items-center space-x-2 rounded border border-gray-300 bg-white px-3 py-1 font-sans text-sm font-semibold text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100">
-      <svg
+      >
+      <svg 
         width="20"
         height="20"
-        viewBox="0 0 30 30"
+        viewBox="0 0 24 24"
         fill="none"
         className="h-4 w-4"
         xmlns="http://www.w3.org/2000/svg">
-        <rect
-          width="30"
-          height="29.5385"
-          rx="2.76923"
-          fill="#362F78"
-        />
         <path
-          d="M10.14 21.94H12.24L15.44 12.18L18.64 21.94H20.74L24.88 8H22.64L19.58 18.68L16.36 8.78H14.52L11.32 18.68L8.24 8H6L10.14 21.94Z"
-          fill="#F7FAFC"
-        />
+          d="M14 7C13.1956 7 12.4089 6.68393 11.8197 6.12132C11.2304 5.55871 10.9167 4.79565 10.9167 4C10.9167 3.20435 11.2304 2.44129 11.8197 1.87868C12.4089 1.31607 13.1956 1 14 1C14.8044 1 15.5911 1.31607 16.1803 1.87868C16.7696 2.44129 17.0833 3.20435 17.0833 4C17.0833 4.79565 16.7696 5.55871 16.1803 6.12132C15.5911 6.68393 14.8044 7 14 7Z"
+          fill="#362F78"
+          stroke="#362F78"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round">
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 14 4"
+            to="-20 14 4"
+            dur="0.5s"
+            repeatCount="indefinite"
+            begin="0s"
+            values="0 14 4; -20 14 4; 0 14 4"
+            keyTimes="0; 0.5; 1"
+          />
+        </path>
       </svg>
 
-      <span> Purchase Pro ↗</span>
     </a>
   );
 };
