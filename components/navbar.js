@@ -25,6 +25,10 @@ export default function Navbar(props) {
 
   const rightmenu = [
     {
+      label: "Videos",
+      href: "/videos"
+    },
+    {
       label: "Articles",
       href: "/articles"
     },

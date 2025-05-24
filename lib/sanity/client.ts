@@ -14,7 +14,10 @@ import {
   catquery,
   getAll,
   searchquery,
-  archiveBannerQuery
+  archiveBannerQuery,
+  videosQuery,
+  featuredVideosQuery,
+  singleVideoQuery
 } from "./groq";
 import { createClient } from "next-sanity";
 
@@ -163,6 +166,40 @@ export async function getArchiveBanner() {
     return banner || null;
   } catch (err) {
     console.error('Error fetching archive banner:', err);
+    return null;
+  }
+}
+
+// Video-related queries
+export async function getAllVideos() {
+  if (!client) return [];
+  try {
+    const videos = await client.fetch(videosQuery);
+    return videos || [];
+  } catch (err) {
+    console.error('Error fetching videos:', err);
+    return [];
+  }
+}
+
+export async function getFeaturedVideos() {
+  if (!client) return [];
+  try {
+    const videos = await client.fetch(featuredVideosQuery);
+    return videos || [];
+  } catch (err) {
+    console.error('Error fetching featured videos:', err);
+    return [];
+  }
+}
+
+export async function getVideoBySlug(slug) {
+  if (!client) return null;
+  try {
+    const video = await client.fetch(singleVideoQuery, { slug });
+    return video || null;
+  } catch (err) {
+    console.error('Error fetching video:', err);
     return null;
   }
 }
