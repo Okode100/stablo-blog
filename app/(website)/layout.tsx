@@ -1,8 +1,7 @@
-import { getSettings, getArchiveBanner, getAllPosts } from "@/lib/sanity/client";
+import { getSettings } from "@/lib/sanity/client";
 import Footer from "@/components/footer";
 import { urlForImage } from "@/lib/sanity/image";
 import Navbar from "@/components/navbar";
-import ArchiveBanner from "@/components/ArchiveBanner";
 
 async function sharedMetaData(params) {
   const settings = await getSettings();
@@ -50,16 +49,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Layout({ children, params }) {
   const settings = await getSettings();
-  const archiveBanner = await getArchiveBanner();
-  const allPosts = await getAllPosts();
-  const latestPostSlug = allPosts[0]?.slug?.current;
 
   return (
     <>
       <Navbar {...settings} />
-      {archiveBanner && (
-        <ArchiveBanner {...archiveBanner} latestPostSlug={latestPostSlug} />
-      )}
       <div>{children}</div>
       <Footer {...settings} />
     </>

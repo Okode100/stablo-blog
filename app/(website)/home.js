@@ -1,10 +1,18 @@
 import Link from "next/link";
 import Container from "@/components/container";
 import PostList from "@/components/postlist";
+import ArchiveBanner from "@/components/ArchiveBanner";
 
-export default function Post({ posts }) {
+export default function Post({ posts, archiveBanner }) {
+  const latestPostSlug = posts[0]?.slug?.current;
+
   return (
     <>
+      {/* Banner Section */}
+      {archiveBanner && (
+        <ArchiveBanner {...archiveBanner} latestPostSlug={latestPostSlug} />
+      )}
+
       {/* Main Content */}
       {posts && (
         <Container>
