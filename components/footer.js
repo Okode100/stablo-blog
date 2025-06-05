@@ -20,7 +20,7 @@ export default function Footer(props) {
            // It helps us to grow & continue our work. Thank you.
           // OR Purchase PRO version for commercial license.  */}
           <a
-            href="https://web3templates.com/?ref=stablo-template"
+            href="https://web3templates.com/?ref=mercy-template"
             rel="noopener"
             target="_blank">
             Web3Templates
@@ -30,7 +30,7 @@ export default function Footer(props) {
         <span>
           {" "}
           <a
-            href="https://github.com/web3templates/stablo"
+            href="https://github.com/web3templates/mercy"
             rel="noopener"
             target="_blank">
             Github
@@ -63,7 +63,7 @@ export default function Footer(props) {
 const Backlink = () => {
   return (
     <a
-      href="https://web3templates.com/templates/stablo-minimal-blog-website-template"
+      href="https://web3templates.com/templates/mercy-minimal-blog-website-template"
       target="_blank"
       rel="noopener"
       >

@@ -1,14 +1,14 @@
-# Stablo Blog Template - Next.js & Sanity CMS
+# Mercy Blog Template - Next.js & Sanity CMS
 
-Stablo is a JAMStack Blog template built with Next.js, Tailwind CSS & Sanity CMS by [Web3Templates](https://web3templates.com/). It comes with free & pro version.
+Mercy is a JAMStack Blog template built with Next.js, Tailwind CSS & Sanity CMS by [Web3Templates](https://web3templates.com/). It comes with free & pro version.
 
 ## [Installation ↓](#installation)
 
 ## Live Demo
 
-**[Free Version Demo →](https://stablo.web3templates.com/)**
+**[Free Version Demo →](https://mercy.web3templates.com/)**
 
-**[Pro Version Demo →](https://stablo-pro.web3templates.com/)**
+**[Pro Version Demo →](https://mercy-pro.web3templates.com/)**
 
 ## Features
 

@@ -9,7 +9,7 @@ import { codeInput } from "@sanity/code-input";
 
 export default defineConfig({
   name: "default",
-  title: "Stablo Template",
+  title: "Mercy Template",
   basePath: "/studio",
   projectId: projectId,
   dataset: dataset,

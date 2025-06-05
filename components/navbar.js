@@ -80,7 +80,7 @@ export default function Navbar(props) {
                       />
                     ) : (
                       <span className="block text-center">
-                        Stablo
+                        Mercy
                       </span>
                     )}
                   </Link>
@@ -94,7 +94,7 @@ export default function Navbar(props) {
                       />
                     ) : (
                       <span className="block text-center">
-                        Stablo
+                        Mercy
                       </span>
                     )}
                   </Link>
