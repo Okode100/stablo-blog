@@ -11,6 +11,13 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { myLoader } from "@/utils/all";
 
 export default function Navbar(props) {
+  const navigation = [
+    { name: "Home", href: "/" },
+    { name: "Articles", href: "/articles" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" }
+  ];
+
   const leftmenu = [
     {
       label: "Home",
@@ -20,7 +27,6 @@ export default function Navbar(props) {
       label: "About",
       href: "/about"
     }
-
   ];
 
   const rightmenu = [

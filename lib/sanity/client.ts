@@ -144,16 +144,15 @@ export async function getTopCategories() {
   return [];
 }
 
-export async function getPaginatedPosts({ limit, pageIndex = 0 }) {
-  if (client) {
-    return (
-      (await client.fetch(paginatedquery, {
-        pageIndex: pageIndex,
-        limit: limit
-      })) || []
-    );
+export async function getPaginatedPosts(pageIndex = 0, limit = 9) {
+  if (!client) return [];
+  try {
+    const posts = await client.fetch(paginatedquery, { pageIndex, limit });
+    return posts || [];
+  } catch (err) {
+    console.error('Error fetching paginated posts:', err);
+    return [];
   }
-  return [];
 }
 
 export async function getArchiveBanner() {

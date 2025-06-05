@@ -16,7 +16,7 @@ export default function Post({ posts, archiveBanner }) {
       {/* Main Content */}
       {posts && (
         <Container>
-          <div className="grid gap-10 md:grid-cols-2 lg:gap-10 ">
+          <div className="grid gap-10 md:grid-cols-2 lg:gap-10">
             {posts.slice(0, 2).map(post => (
               <PostList
                 key={post._id}
@@ -26,7 +26,7 @@ export default function Post({ posts, archiveBanner }) {
               />
             ))}
           </div>
-          <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3 ">
+          <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
             {posts.slice(2, 14).map(post => (
               <PostList key={post._id} post={post} aspect="square" />
             ))}
