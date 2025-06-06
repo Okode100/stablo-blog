@@ -23,14 +23,16 @@ export default function Contact({ settings }) {
   });
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState(false);
-  // Please update the Access Key in the Sanity CMS - Site Congig Page
+  // Please update the Access Key in the Sanity CMS - Site Config Page
   const apiKey = settings?.w3ckey || "86c22424-7575-45a1-81cc-f828455a27fa";
+  console.log("Web3Forms Access Key:", apiKey);
 
   const { submit: onSubmit } = useWeb3Forms({
     access_key: apiKey,
     settings: {
       from_name: "BuddingAfrica",
-      subject: "New Contact Message from BuddingAfrica"
+      subject: "New Contact Message from BuddingAfrica",
+      to_email: "buddingafrica@gmail.com"
     },
     onSuccess: (msg, data) => {
       setIsSuccess(true);
